@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AuthenticationGuard } from './core/authentication.guard';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -15,7 +16,7 @@ import { environment } from '../environments/environment';
 		BrowserAnimationsModule,
 		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
 	],
-	providers: [],
+	providers: [AuthenticationGuard],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

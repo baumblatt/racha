@@ -1,7 +1,14 @@
 <div class="container">
-  <mat-card>
-    <mat-card-content>
-      Hello World!
-    </mat-card-content>
-  </mat-card>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Hello Firebase</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<ul>
+				<li class="text" *ngFor="let item of items | async">
+					{{item.name}}
+				</li>
+			</ul>
+		</mat-card-content>
+	</mat-card>
 </div>
