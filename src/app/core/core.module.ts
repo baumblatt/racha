@@ -6,10 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './containers/home/home.component';
 
 @NgModule({
-  imports: [
-    CoreRoutingModule,
-    SharedModule,
-  ],
-  declarations: [LayoutComponent, HomeComponent]
+	imports: [CoreRoutingModule, SharedModule],
+	declarations: [LayoutComponent, HomeComponent]
 })
-export class CoreModule { }
+export class CoreModule {}
