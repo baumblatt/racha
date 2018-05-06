@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,5 +11,9 @@ import { Observable } from 'rxjs';
 })
 export class LayoutComponent {
 	isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-	constructor(private breakpointObserver: BreakpointObserver) {}
+	constructor(private fireAuth: AngularFireAuth, private breakpointObserver: BreakpointObserver) {}
+
+	logout() {
+		this.fireAuth.auth.signOut().catch();
+	}
 }
