@@ -3,7 +3,7 @@
 // always include only once per project
 @include mat-core();
 
-$app-primary: mat-palette($mat-teal);
+$app-primary: mat-palette($mat-blue-gray);
 $app-accent:  mat-palette($mat-deep-orange);
 $app-warn:    mat-palette($mat-red);
 
