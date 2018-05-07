@@ -10,7 +10,6 @@ import { AuthenticationGuard } from './authentication.guard';
 import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
-import { HomeComponent } from './containers/home/home.component';
 import { LoginComponent } from './containers/login/login.component';
 
 @NgModule({
@@ -29,7 +28,7 @@ import { LoginComponent } from './containers/login/login.component';
 			stateKey: 'router', // name of reducer key
 		})
 	],
-	declarations: [LayoutComponent, HomeComponent, LoginComponent],
+	declarations: [LayoutComponent, LoginComponent],
 	providers: [AuthenticationGuard]
 })
 export class CoreModule {}
