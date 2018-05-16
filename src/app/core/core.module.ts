@@ -5,11 +5,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../../environments/environment';
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthenticationGuard } from './guards/authentication.guard';
 import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './containers/login/login.component';
+import { AuthEffects } from './store/effects/auth.effects';
+import { RouterEffects } from './store/effects/router.effects';
 import { SnackBarEffects } from './store/effects/snack-bar.effects';
 import { UsersEffects } from './store/effects/users.effects';
 import { usersReducer } from './store/reducers/users.reducer';
@@ -19,7 +21,7 @@ import { usersReducer } from './store/reducers/users.reducer';
 		AngularFireModule.initializeApp(environment.firebase),
 		CoreRoutingModule,
 		SharedModule,
-		EffectsModule.forRoot([SnackBarEffects, UsersEffects]),
+		EffectsModule.forRoot([SnackBarEffects, UsersEffects, AuthEffects, RouterEffects]),
 		StoreModule.forRoot({ router: routerReducer, users: usersReducer }),
 		StoreDevtoolsModule.instrument({
 			name: 'Racha do Abel',

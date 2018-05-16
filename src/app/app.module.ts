@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { AuthenticationGuard } from './core/authentication.guard';
+import { AuthenticationGuard } from './core/guards/authentication.guard';
 
 @NgModule({
 	declarations: [AppComponent],
