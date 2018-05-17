@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthUser } from '../../store/actions/auth.action';
+import { SingInUser } from '../../store/actions/auth.action';
 import { UsersState } from '../../store/reducers/users.reducer';
 
 @Component({
@@ -8,14 +8,15 @@ import { UsersState } from '../../store/reducers/users.reducer';
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-	constructor(private store: Store<UsersState>) {}
-
-	ngOnInit() {}
+export class LoginComponent {
+	constructor(private store: Store<UsersState>) {
+	}
 
 	/**
+	 * Dispatch SignInUser action to store with the given provider id as payload.
+	 * @param {string} providerId the provider id that should be used in sign in process.
 	 */
-	google() {
-		this.store.dispatch(new AuthUser());
+	signIn(providerId: string) {
+		this.store.dispatch(new SingInUser(providerId));
 	}
 }

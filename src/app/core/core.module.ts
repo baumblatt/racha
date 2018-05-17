@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { LayoutComponent } from './components/layout/layout.component';
+import { LayoutComponent } from './containers/layout/layout.component';
 import { LoginComponent } from './containers/login/login.component';
 import { AuthEffects } from './store/effects/auth.effects';
 import { RouterEffects } from './store/effects/router.effects';
