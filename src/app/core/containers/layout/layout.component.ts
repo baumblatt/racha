@@ -15,7 +15,7 @@ export class LayoutComponent {
 	/**
 	 * Verifica se trata-se é Handset para ajustar o menu.
 	 */
-	isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+	isHandset$: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
 
 	/**
 	 * Referencia para o input de pesquisa.
