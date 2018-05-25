@@ -1,21 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Racha } from '../../models/rachas.model';
+import { LoadRachas, LoadRachasStop } from '../../store/actions/racha.action';
+import { RachaAbelState } from '../../store/reducers/global.reducers';
+import { getRachas } from '../../store/selectors/racha.selectors';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-	items: Observable<any[]>;
-	constructor(db: AngularFirestore) {
-		db.firestore.settings({ timestampsInSnapshots: true });
-		this.items = db.collection('rachas').valueChanges().pipe(
-			tap(item => console.log(item)),
+export class HomeComponent implements OnInit, OnDestroy {
+
+	rachas: Observable<Racha[]>;
+
+	constructor(private store: Store<RachaAbelState>) {
+	}
+
+	ngOnInit() {
+		this.store.dispatch(new LoadRachas());
+
+		this.rachas = this.store.pipe(
+			select(getRachas)
 		);
 	}
 
-	ngOnInit() {}
+	ngOnDestroy(): void {
+		this.store.dispatch(new LoadRachasStop());
+	}
 }
