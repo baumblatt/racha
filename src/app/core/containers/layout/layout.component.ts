@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { SignOutUser } from '../../store/actions/auth.action';
 import { UsersState } from '../../store/reducers/users.reducer';
@@ -24,7 +25,8 @@ export class LayoutComponent {
 	drawer: any;
 
 
-	constructor(private breakpointObserver: BreakpointObserver, private store: Store<UsersState>) {
+	constructor(private breakpointObserver: BreakpointObserver, private store: Store<UsersState>, db: AngularFirestore) {
+		db.firestore.settings({ timestampsInSnapshots: true });
 	}
 
 	/**
