@@ -1,0 +1,6 @@
+<mat-list>
+	<mat-list-item *ngFor="let jogador of jogadores">
+		<img mat-list-avatar [src]="jogador.photoURL">
+		<h4 mat-line>{{jogador.displayName}}</h4>
+	</mat-list-item>
+</mat-list>

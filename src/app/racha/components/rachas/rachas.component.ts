@@ -11,8 +11,4 @@ export class RachasComponent {
 
 	@Input()
 	rachas: Racha[];
-
-	constructor() {
-	}
-
 }
