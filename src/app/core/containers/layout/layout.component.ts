@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -9,8 +9,7 @@ import { UsersState } from '../../store/reducers/users.reducer';
 @Component({
 	selector: 'app-layout',
 	templateUrl: './layout.component.html',
-	styleUrls: ['./layout.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
 	/**
