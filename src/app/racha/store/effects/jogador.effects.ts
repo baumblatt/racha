@@ -3,6 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { of } from 'rxjs';
 import { catchError, map, pluck, switchMapTo, takeUntil } from 'rxjs/operators';
+import { Jogador } from '../../models/jogador.model';
 import { LOAD_JOGADORES, LOAD_JOGADORES_STOP, LoadJogadoresFail, LoadJogadoresSuccess } from '../actions/jogador.action';
 
 @Injectable()
