@@ -3,34 +3,38 @@ import { NgModule } from '@angular/core';
 import {
 	MatButtonModule,
 	MatCardModule,
+	MatGridListModule,
 	MatIconModule,
 	MatListModule,
 	MatSidenavModule,
 	MatSnackBarModule,
-	MatToolbarModule
+	MatToolbarModule,
 } from '@angular/material';
 
 @NgModule({
 	imports: [
 		LayoutModule,
-		MatCardModule,
-		MatToolbarModule,
 		MatButtonModule,
-		MatSidenavModule,
+		MatCardModule,
+		MatGridListModule,
 		MatIconModule,
 		MatListModule,
-		MatSnackBarModule
+		MatSidenavModule,
+		MatSnackBarModule,
+		MatToolbarModule
 	],
 	exports: [
 		LayoutModule,
-		MatCardModule,
-		MatToolbarModule,
 		MatButtonModule,
-		MatSidenavModule,
+		MatCardModule,
+		MatGridListModule,
 		MatIconModule,
 		MatListModule,
-		MatSnackBarModule
+		MatSidenavModule,
+		MatSnackBarModule,
+		MatToolbarModule
 	],
 	declarations: []
 })
-export class MaterialModule {}
+export class MaterialModule {
+}

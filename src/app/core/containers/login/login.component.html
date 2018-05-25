@@ -1,12 +1,22 @@
 <div class="container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Bem Vindo ao Racha do Abel</mat-card-title>
-      <mat-card-subtitle>Para entrar é necessário se autenticar através de uma das opções abaixo.</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <img src="/assets/images/login/google.jpg" (click)="signIn('google')">
-      <img src="/assets/images/login/facebook.jpg">
-    </mat-card-content>
-  </mat-card>
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Bem Vindo ao Racha do Abel</mat-card-title>
+			<mat-card-subtitle>Para entrar é necessário se autenticar através de uma das opções abaixo.</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-grid-list [cols]="3">
+				<mat-grid-tile>
+					<img src="/assets/images/login/google.png" (click)="signIn('google')">
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<img src="/assets/images/login/twitter.png" (click)="signIn('twitter')">
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<img src="/assets/images/login/facebook.png" (click)="signIn('facebook')">
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-card-content>
+	</mat-card>
+
 </div>

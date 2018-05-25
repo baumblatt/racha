@@ -8,7 +8,12 @@ import {
 	SIGN_OUT_USER,
 	SIGN_OUT_USER_SUCCESS,
 	SignOutUserFail,
-	SignOutUserSuccess, SING_IN_USER, SING_IN_USER_FAIL, SING_IN_USER_SUCCESS, SingInUserFail, SingInUserSuccess
+	SignOutUserSuccess,
+	SING_IN_USER,
+	SING_IN_USER_FAIL,
+	SING_IN_USER_SUCCESS,
+	SingInUserFail,
+	SingInUserSuccess
 } from '../actions/auth.action';
 import { Go } from '../actions/router.action';
 import { ShowSnackBar } from '../actions/snack-bar.action';
@@ -20,8 +25,18 @@ export class AuthEffects {
 	authUser$ = this.actions$.pipe(
 		ofType(SING_IN_USER),
 		pluck('payload'),
-		switchMap(() =>
-			from(this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())).pipe(
+		map((provider) => {
+			switch (provider) {
+				case 'twitter':
+					return new firebase.auth.TwitterAuthProvider();
+				case 'facebook':
+					return new firebase.auth.FacebookAuthProvider();
+				default:
+					return new firebase.auth.GoogleAuthProvider();
+			}
+		}),
+		switchMap((provider) =>
+			from(this.fireAuth.auth.signInWithPopup(provider)).pipe(
 				map((result) => new SingInUserSuccess(result)),
 				catchError((error) => of(new SingInUserFail(error)))
 			))
