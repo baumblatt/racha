@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { getRachaAbelState, RachaAbelState } from '../reducers/global.reducers';
-import { adapter } from '../reducers/racha.reducer';
+import { adapter, RachaState } from '../reducers/racha.reducer';
 
 export const getRachaState = createSelector(
 	getRachaAbelState,
@@ -10,4 +10,9 @@ export const getRachaState = createSelector(
 export const getRachas = createSelector(
 	getRachaState,
 	adapter.getSelectors().selectAll
+);
+
+export const getRacha = createSelector(
+	getRachaState,
+	(state: RachaState) => state.entities[state.selectedRacha]
 );
