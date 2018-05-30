@@ -9,6 +9,8 @@
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src",
+		"node_modules/@types",
+		"node_modules/moment/moment.d.ts"
   ]
 }

@@ -4,8 +4,8 @@ import * as functions from 'firebase-functions';
 
 admin.initializeApp(functions.config().firebase);
 
-// Start writing Firebase Functions
-// https://firebase.google.com/docs/functions/typescript
+// export the endpoint express.
+export { endpoint } from './endpoint';
 
 export const createJogador = functions.auth.user().onCreate(function(event) {
 	const { uid, displayName, photoURL, email } = event;
