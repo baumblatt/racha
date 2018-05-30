@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Racha } from '../../models/rachas.model';
+import { DeselectRacha } from '../../store/actions/racha.action';
 
 @Component({
 	selector: 'app-racha',
@@ -9,7 +9,17 @@ import { Racha } from '../../models/rachas.model';
 })
 export class RachaComponent {
 
-	constructor(private bottomSheetRef: MatBottomSheetRef<RachaComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: { racha: Racha }) {
+	/**
+	 * Referência para o racha selecionado.
+	 */
+	@Input()
+	racha: Racha;
+
+	@Output()
+	deselectRacha: EventEmitter<DeselectRacha> = new EventEmitter<DeselectRacha>();
+
+	back() {
+		this.deselectRacha.emit(new DeselectRacha());
 	}
 
 }

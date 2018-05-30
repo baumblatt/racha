@@ -1,32 +1,30 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatBottomSheet } from '@angular/material';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Action, select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { concatMap, filter } from 'rxjs/operators';
-import { RachaComponent } from '../../components/racha/racha.component';
+import { Observable } from 'rxjs';
 import { Racha } from '../../models/rachas.model';
-import { DeselectRacha, ObserveRachasSubscribe, ObserveRachasUnsubscribe } from '../../store/actions/racha.action';
+import { ObserveRachasSubscribe, ObserveRachasUnsubscribe } from '../../store/actions/racha.action';
 import { RachaAbelState } from '../../store/reducers/global.reducers';
 import { getRacha, getRachas } from '../../store/selectors/racha.selectors';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './rachas.component.html',
-	styleUrls: ['./rachas.component.scss']
+	styleUrls: ['./rachas.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RachasComponent implements OnInit, OnDestroy {
 
 	/**
 	 * Rachas from store.
 	 */
-	rachas: Observable<Racha[]>;
+	rachas$: Observable<Racha[]>;
 
 	/**
-	 * Subscription to handle Racha selections.
+	 * Selected racha
 	 */
-	subscription: Subscription;
+	racha$: Observable<Racha>;
 
-	constructor(private store: Store<RachaAbelState>, private bottomSheet: MatBottomSheet) {
+	constructor(private store: Store<RachaAbelState>) {
 	}
 
 	/**
@@ -35,18 +33,12 @@ export class RachasComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.store.dispatch(new ObserveRachasSubscribe());
 
-		this.rachas = this.store.pipe(
+		this.rachas$ = this.store.pipe(
 			select(getRachas)
 		);
 
-		this.subscription = this.store.pipe(
+		this.racha$ = this.store.pipe(
 			select(getRacha),
-			filter(racha => !!racha),
-			concatMap((racha) =>
-				this.bottomSheet.open(RachaComponent, { data: { racha: racha } }).afterDismissed()
-			)
-		).subscribe(
-			() => this.dispatch(new DeselectRacha())
 		);
 	}
 
@@ -62,10 +54,6 @@ export class RachasComponent implements OnInit, OnDestroy {
 	 * Unsubscribe from rachas and racha selection.
 	 */
 	ngOnDestroy(): void {
-		if (this.subscription) {
-			this.subscription.unsubscribe();
-		}
-
 		this.dispatch(new ObserveRachasUnsubscribe());
 	}
 }
