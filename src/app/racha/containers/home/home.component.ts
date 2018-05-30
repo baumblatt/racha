@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Racha } from '../../models/rachas.model';
-import { LoadRachas, LoadRachasStop } from '../../store/actions/racha.action';
+import { ObserveRachasSubscribe, ObserveRachasUnsubscribe } from '../../store/actions/racha.action';
 import { RachaAbelState } from '../../store/reducers/global.reducers';
 import { getRachas } from '../../store/selectors/racha.selectors';
 
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		this.store.dispatch(new LoadRachas());
+		this.store.dispatch(new ObserveRachasSubscribe());
 
 		this.rachas = this.store.pipe(
 			select(getRachas)
@@ -27,6 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.store.dispatch(new LoadRachasStop());
+		this.store.dispatch(new ObserveRachasUnsubscribe());
 	}
 }

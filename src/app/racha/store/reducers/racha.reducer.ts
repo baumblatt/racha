@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as moment from 'moment';
 import { Racha } from '../../models/rachas.model';
-import { LOAD_RACHAS_SUCCESS, RachaAction } from '../actions/racha.action';
+import { OBSERVE_RACHAS_NEXT, RachaAction } from '../actions/racha.action';
 
 export const adapter: EntityAdapter<Racha> = createEntityAdapter<Racha>({
 	selectId: model => model.nome,
@@ -19,7 +19,7 @@ export const initialState: RachaState = {
 export function rachaReducer(state = initialState, action: RachaAction): RachaState {
 
 	switch (action.type) {
-		case LOAD_RACHAS_SUCCESS: {
+		case OBSERVE_RACHAS_NEXT: {
 			return adapter.addAll(action.payload, state);
 		}
 

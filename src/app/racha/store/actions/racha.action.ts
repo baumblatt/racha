@@ -1,31 +1,31 @@
 import { Action } from '@ngrx/store';
 import { Racha } from '../../models/rachas.model';
 
-export const LOAD_RACHAS = '[Rachas] Load Rachas.';
-export const LOAD_RACHAS_SUCCESS = '[Rachas] Load Rachas (Success).';
-export const LOAD_RACHAS_FAIL = '[Rachas] Load Rachas (Fail).';
-export const LOAD_RACHAS_STOP = '[Rachas] Load Rachas (Stop)';
+export const OBSERVE_RACHAS_SUBSCRIBE = '[Racha] Observe Rachas (Subscribe).';
+export const OBSERVE_RACHAS_NEXT = '[Racha] Observe Rachas (Next).';
+export const OBSERVE_RACHAS_ERROR = '[Racha] Observe Rachas (Error).';
+export const OBSERVE_RACHAS_UNSUBSCRIBE = '[Racha] Observe Rachas (Unsubscribe).';
 
-export class LoadRachas implements Action {
-	readonly type = LOAD_RACHAS;
+export class ObserveRachasSubscribe implements Action {
+	readonly type = OBSERVE_RACHAS_SUBSCRIBE;
 }
 
-export class LoadRachasSuccess implements Action {
-	readonly type = LOAD_RACHAS_SUCCESS;
+export class ObserveRachasNext implements Action {
+	readonly type = OBSERVE_RACHAS_NEXT;
 
 	constructor(public payload: Racha[]) {
 	}
 }
 
-export class LoadRachasFail implements Action {
-	readonly type = LOAD_RACHAS_FAIL;
+export class ObserveRachasError implements Action {
+	readonly type = OBSERVE_RACHAS_ERROR;
 
 	constructor(public payload: any) {
 	}
 }
 
-export class LoadRachasStop implements Action {
-	readonly type = LOAD_RACHAS_STOP;
+export class ObserveRachasUnsubscribe implements Action {
+	readonly type = OBSERVE_RACHAS_UNSUBSCRIBE;
 }
 
-export type RachaAction = LoadRachas | LoadRachasSuccess | LoadRachasFail | LoadRachasStop;
+export type RachaAction = | ObserveRachasSubscribe | ObserveRachasNext | ObserveRachasError | ObserveRachasUnsubscribe;
