@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
-import { RachasComponent } from './components/rachas/rachas.component';
-import { HomeComponent } from './containers/home/home.component';
-
+import { ListaJogadoresComponent } from './components/lista-jogadores/lista-jogadores.component';
+import { RachaComponent } from './components/racha/racha.component';
+import { ListaRachasComponent } from './components/rachas/lista-rachas.component';
+import { JogadoresComponent } from './containers/jogadores/jogadores.component';
+import { RachasComponent } from './containers/rachas/rachas.component';
 import { RachaRoutingModule } from './racha-routing.module';
 import { JogadorEffects } from './store/effects/jogador.effects';
 import { RachaEffects } from './store/effects/racha.effects';
 import { reducers } from './store/reducers/global.reducers';
-import { JogadoresComponent } from './containers/jogadores/jogadores.component';
-import { ListaJogadoresComponent } from './components/lista-jogadores/lista-jogadores.component';
 
 @NgModule({
 	imports: [
@@ -19,7 +19,8 @@ import { ListaJogadoresComponent } from './components/lista-jogadores/lista-joga
 		StoreModule.forFeature('racha-abel', reducers),
 		RachaRoutingModule
 	],
-	declarations: [HomeComponent, RachasComponent, JogadoresComponent, ListaJogadoresComponent]
+	declarations: [RachasComponent, ListaRachasComponent, JogadoresComponent, ListaJogadoresComponent, RachaComponent],
+	entryComponents: [RachaComponent]
 })
 export class RachaModule {
 }

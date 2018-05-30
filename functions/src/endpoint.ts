@@ -27,7 +27,9 @@ app.get('/rachas/:month', (req, res) => {
 			nome: friday.format('YYYY-MM-DD'),
 			mes: friday.format('YYYY-MM'),
 			mensalistas: [],
-			convidados: []
+			convidados: [],
+			presentes: [],
+			realizado: false
 		}).catch(error => console.error(error));
 
 		fridays.push(friday.clone());

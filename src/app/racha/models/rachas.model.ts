@@ -2,7 +2,9 @@ import { Jogador } from './jogador.model';
 
 export interface Racha {
 	nome: string;
-	confirmados: Jogador[];
+	mes: string;
+	mensalistas: Jogador[];
+	convidados: Jogador[];
 	presentes: Jogador[];
 	realizado: boolean;
 }

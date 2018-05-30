@@ -1,6 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgModule } from '@angular/core';
 import {
+	MatBottomSheetModule,
 	MatButtonModule,
 	MatCardModule,
 	MatGridListModule,
@@ -8,12 +9,13 @@ import {
 	MatListModule,
 	MatSidenavModule,
 	MatSnackBarModule,
-	MatToolbarModule,
+	MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
 	imports: [
 		LayoutModule,
+		MatBottomSheetModule,
 		MatButtonModule,
 		MatCardModule,
 		MatGridListModule,
@@ -25,6 +27,7 @@ import {
 	],
 	exports: [
 		LayoutModule,
+		MatBottomSheetModule,
 		MatButtonModule,
 		MatCardModule,
 		MatGridListModule,

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './containers/home/home.component';
 import { JogadoresComponent } from './containers/jogadores/jogadores.component';
+import { RachasComponent } from './containers/rachas/rachas.component';
 
 const routes: Routes = [
-	{ path: '', pathMatch: 'full', redirectTo: 'home' },
-	{ path: 'home', component: HomeComponent, data: { view: 'Home' } },
+	{ path: '', pathMatch: 'full', redirectTo: 'rachas' },
+	{ path: 'rachas', component: RachasComponent, data: { view: 'Rachas' } },
 	{ path: 'jogadores', component: JogadoresComponent, data: { view: 'Jogadores' } }
 ];
 
