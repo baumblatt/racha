@@ -2,14 +2,14 @@
 	<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset$ | async)!.matches">
 		<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 	</button>
-	<span routerLink="/core/home">Racha do Abel</span>
+	<span routerLink="/core/racha/rachas">Racha do Abel</span>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
 	<mat-sidenav #drawer class="sidenav" [fixedInViewport]="false" [attr.role]="(isHandset$ | async)!.matches ? 'dialog' : 'navigation'"
 				 [mode]="(isHandset$ | async)!.matches ? 'over' : 'side'" [opened]="!(isHandset$ | async)!.matches">
 
 		<mat-nav-list>
-			<a mat-list-item routerLink="/core/racha/home">Rachas</a>
+			<a mat-list-item routerLink="/core/racha/rachas">Rachas</a>
 			<a mat-list-item routerLink="/core/racha/jogadores">Jogadores</a>
 			<a mat-list-item (click)="signOut()">Logout</a>
 		</mat-nav-list>
