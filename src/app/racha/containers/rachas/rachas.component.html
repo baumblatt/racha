@@ -8,5 +8,5 @@
 </mat-card>
 
 <ng-template #racha>
-	<app-racha [racha]="racha$ | async"></app-racha>
+	<app-racha [racha]="racha$ | async" (deselectRacha)="dispatch($event)"></app-racha>
 </ng-template>

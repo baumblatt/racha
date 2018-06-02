@@ -1,6 +1,9 @@
 <mat-card>
 	<mat-card-header>
-		<mat-card-title>Racha de {{racha.nome}}</mat-card-title>
+		<mat-card-title>
+			<button mat-icon-button (click)="back()"><mat-icon>navigate_before</mat-icon></button>
+			Racha de {{racha.nome}}
+		</mat-card-title>
 		<mat-card-subtitle *ngIf="!racha.realizado">
 			{{racha.mensalistas.length == 0 ? 'ninguem confirmado.' : (racha.mensalistas.length == 1 ? 'Um mensalista confirmado.' : racha.mensalistas.length + 'mensalistas confirmados')}}
 		</mat-card-subtitle>
