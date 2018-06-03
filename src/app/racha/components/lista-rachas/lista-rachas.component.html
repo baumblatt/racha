@@ -1,8 +1,3 @@
 <mat-list>
-	<mat-list-item *ngFor="let racha of rachas" (click)="open(racha)">
-		<h4 mat-line>Racha de {{racha.nome}}</h4>
-		<small mat-line *ngIf="!racha.realizado">Confirmados: {{racha.mensalistas.length}}</small>
-		<small mat-line *ngIf="!racha.realizado">Convidados: {{racha.convidados.length}}</small>
-		<small mat-line *ngIf="racha.realizado">Presentes: {{racha.presentes.length}}</small>
-	</mat-list-item>
+	<app-lista-rachas-item *ngFor="let racha of rachas" [racha]="racha" (dispatch)="dispatch.emit($event)"></app-lista-rachas-item>
 </mat-list>

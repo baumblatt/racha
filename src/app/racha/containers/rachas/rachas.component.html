@@ -3,7 +3,7 @@
 		<mat-card-title>Rachas do Abel</mat-card-title>
 	</mat-card-header>
 	<mat-card-content>
-		<app-lista-rachas [rachas]="rachas$ | async" (selectRacha)="dispatch($event)"></app-lista-rachas>
+		<app-lista-rachas [rachas]="rachas$ | async" (dispatch)="dispatch($event)"></app-lista-rachas>
 	</mat-card-content>
 </mat-card>
 
