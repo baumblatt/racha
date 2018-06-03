@@ -26,10 +26,11 @@ app.get('/rachas/:month', (req, res) => {
 		admin.firestore().doc(`/rachas/${friday.format('YYYY-MM-DD')}`).set({
 			nome: friday.format('YYYY-MM-DD'),
 			mes: friday.format('YYYY-MM'),
+			mensagem: 'Em breve, aguarde abertura do Racha',
 			mensalistas: [],
 			convidados: [],
 			presentes: [],
-			realizado: false
+			status: 'breve'
 		}).catch(error => console.error(error));
 
 		fridays.push(friday.clone());
