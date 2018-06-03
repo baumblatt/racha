@@ -9,6 +9,7 @@ import { Racha } from '../../models/rachas.model';
 import {
 	ADMIN_RACHA,
 	AdminRacha,
+	DESELECT_RACHA,
 	OBSERVE_RACHAS_SUBSCRIBE,
 	OBSERVE_RACHAS_UNSUBSCRIBE,
 	ObserveRachasError,
@@ -39,6 +40,13 @@ export class RachaEffects {
 		ofType(SELECT_RACHA),
 		pluck('payload'),
 		map((racha: Racha) => new Go({ path: ['core', 'racha', 'racha', racha.nome] }))
+	);
+
+	@Effect()
+	deselectRacha$ = this.actions$.pipe(
+		ofType(DESELECT_RACHA),
+		pluck('payload'),
+		map(() => new Go({ path: ['core', 'racha', 'rachas'] }))
 	);
 
 	@Effect()
