@@ -18,10 +18,10 @@ export const getJogadores = createSelector(
 export const getJogadorLogado = createSelector(
 	getJogadorState,
 	getUserinfo,
-	(state: JogadorState, userInfo: UserInfo) => state.entities[userInfo.uid]
+	(state: JogadorState, userInfo: UserInfo) => userInfo ? state.entities[userInfo.uid] : undefined
 );
 
 export const isAdminitrator = createSelector(
 	getJogadorLogado,
-	(jogador: Jogador) => jogador.admin
+	(jogador: Jogador) => jogador ? jogador.admin : false
 );

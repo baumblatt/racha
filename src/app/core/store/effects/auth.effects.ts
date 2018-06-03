@@ -17,6 +17,7 @@ import {
 } from '../actions/auth.action';
 import { Go } from '../actions/router.action';
 import { ShowSnackBar } from '../actions/snack-bar.action';
+import { GetUser } from '../actions/users.action';
 
 @Injectable()
 export class AuthEffects {
@@ -46,7 +47,7 @@ export class AuthEffects {
 	authUserSuccess$ = this.actions$.pipe(
 		ofType(SING_IN_USER_SUCCESS),
 		pluck('payload'),
-		switchMap(() => from([new Go({ path: ['core', 'racha', 'rachas'] }), new ShowSnackBar({
+		switchMap(() => from([new GetUser(), new Go({ path: ['core', 'racha', 'rachas'] }), new ShowSnackBar({
 				message: 'Bem vindo ao Racha do Abel',
 				config: { duration: 3000, panelClass: ['mat-snack-bar-primary'] }
 			})])

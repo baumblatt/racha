@@ -1,4 +1,4 @@
-<mat-card *ngIf="!((racha$ | async)?.nome); else racha">
+<mat-card>
 	<mat-card-header>
 		<mat-card-title>Rachas do Abel</mat-card-title>
 	</mat-card-header>
@@ -6,7 +6,3 @@
 		<app-lista-rachas [rachas]="rachas$ | async" (dispatch)="dispatch($event)"></app-lista-rachas>
 	</mat-card-content>
 </mat-card>
-
-<ng-template #racha>
-	<app-racha [racha]="racha$ | async" (deselectRacha)="dispatch($event)"></app-racha>
-</ng-template>

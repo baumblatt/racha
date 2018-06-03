@@ -1,9 +1,10 @@
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { SignOutUser } from '../../store/actions/auth.action';
+import { GetUser } from '../../store/actions/users.action';
 import { UsersState } from '../../store/reducers/users.reducer';
 
 @Component({
@@ -11,7 +12,7 @@ import { UsersState } from '../../store/reducers/users.reducer';
 	templateUrl: './layout.component.html',
 	styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
 	/**
 	 * Verifica se trata-se é Handset para ajustar o menu.
 	 */
@@ -26,6 +27,10 @@ export class LayoutComponent {
 
 	constructor(private breakpointObserver: BreakpointObserver, private store: Store<UsersState>, db: AngularFirestore) {
 		db.firestore.settings({ timestampsInSnapshots: true });
+	}
+
+	ngOnInit(): void {
+		this.store.dispatch(new GetUser());
 	}
 
 	/**

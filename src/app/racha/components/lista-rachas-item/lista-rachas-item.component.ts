@@ -28,5 +28,4 @@ export class ListaRachasItemComponent {
 	select(racha: Racha) {
 		this.dispatch.emit(new SelectRacha(racha));
 	}
-
 }

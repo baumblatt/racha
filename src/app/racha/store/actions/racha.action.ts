@@ -36,10 +36,18 @@ export class ObserveRachasUnsubscribe implements Action {
 // Actions to select and unselect Racha.
 // ----------------------------------------
 export const SELECT_RACHA = '[Racha] Select Racha';
+export const ADMIN_RACHA = '[Racha] Admin Racha';
 export const DESELECT_RACHA = '[Racha] Deselect Racha';
 
 export class SelectRacha implements Action {
 	readonly type = SELECT_RACHA;
+
+	constructor(public payload: Racha) {
+	}
+}
+
+export class AdminRacha implements Action {
+	readonly type = ADMIN_RACHA;
 
 	constructor(public payload: Racha) {
 	}
@@ -55,4 +63,5 @@ export type RachaAction =
 	| ObserveRachasError
 	| ObserveRachasUnsubscribe
 	| SelectRacha
+	| AdminRacha
 	| DeselectRacha;

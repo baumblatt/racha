@@ -2,7 +2,7 @@
 	<h4 mat-line>Racha de {{racha.nome}}</h4>
 	<small mat-line>{{racha.mensagem}}</small>
 </mat-list-item>
-<mat-list-item *ngIf="racha.status == 'realizado'" (click)="open(racha)">
+<mat-list-item *ngIf="racha.status == 'realizado'" (click)="select(racha)">
 	<h4 mat-line>Racha de {{racha.nome}}</h4>
 	<small mat-line>Presentes: {{racha.presentes.length}}</small>
 </mat-list-item>
