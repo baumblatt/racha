@@ -4,7 +4,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { of } from 'rxjs';
 import { catchError, map, pluck, switchMapTo, takeUntil } from 'rxjs/operators';
 import { Jogador } from '../../models/jogador.model';
-import { LOAD_JOGADORES, LOAD_JOGADORES_STOP, LoadJogadoresFail, LoadJogadoresSuccess } from '../actions/jogador.action';
+import { ObserveJogadoresNext } from '../actions/jogador.action';
+import { OBSERVE_RACHAS_SUBSCRIBE, OBSERVE_RACHAS_UNSUBSCRIBE, ObserveRachasError } from '../actions/racha.action';
 
 @Injectable()
 export class JogadorEffects {
@@ -12,15 +13,13 @@ export class JogadorEffects {
 	}
 
 	@Effect()
-	loadJogadores$ = this.actions$.pipe(
-		ofType(LOAD_JOGADORES),
+	observeRachasSubscribe$ = this.actions$.pipe(
+		ofType(OBSERVE_RACHAS_SUBSCRIBE),
 		pluck('payload'),
 		switchMapTo(this.db.collection<Jogador>('jogadores').valueChanges().pipe(
-			map((jogadores) => new LoadJogadoresSuccess(jogadores)),
-			catchError(error => of(new LoadJogadoresFail(error))),
-			takeUntil(this.actions$.pipe(ofType(LOAD_JOGADORES_STOP)))
+			map((jogadores) => new ObserveJogadoresNext(jogadores)),
+			catchError(error => of(new ObserveRachasError(error))),
+			takeUntil(this.actions$.pipe(ofType(OBSERVE_RACHAS_UNSUBSCRIBE)))
 		))
 	);
-
-
 }

@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Jogador } from '../../models/jogador.model';
-import { JogadorAction, LOAD_JOGADORES_SUCCESS } from '../actions/jogador.action';
+import { JogadorAction, OBSERVE_JOGADORES_NEXT } from '../actions/jogador.action';
 
 export const adapter: EntityAdapter<Jogador> = createEntityAdapter<Jogador>({
 	selectId: model => model.uid,
@@ -16,7 +16,7 @@ export const initialState: JogadorState = adapter.getInitialState({ loaded: fals
 export function jogadorReducer(state = initialState, action: JogadorAction): JogadorState {
 
 	switch (action.type) {
-		case LOAD_JOGADORES_SUCCESS: {
+		case OBSERVE_JOGADORES_NEXT: {
 			return adapter.addAll(action.payload, { ...state, loaded: true });
 		}
 

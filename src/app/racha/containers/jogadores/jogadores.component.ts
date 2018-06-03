@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Jogador } from '../../models/jogador.model';
-import { LoadJogadores, LoadJogadoresStop } from '../../store/actions/jogador.action';
+import { ObserveJogadoresSubscribe, ObserveJogadoresUnsubscribe } from '../../store/actions/jogador.action';
 import { RachaAbelState } from '../../store/reducers/global.reducers';
 import { getJogadores } from '../../store/selectors/jogador.selectors';
 
@@ -19,7 +19,7 @@ export class JogadoresComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		this.store.dispatch(new LoadJogadores());
+		this.store.dispatch(new ObserveJogadoresSubscribe());
 
 		this.jogadores = this.store.pipe(
 			select(getJogadores),
@@ -27,7 +27,7 @@ export class JogadoresComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.store.dispatch(new LoadJogadoresStop());
+		this.store.dispatch(new ObserveJogadoresUnsubscribe());
 	}
 
 
