@@ -10,6 +10,11 @@ export const getJogadorState = createSelector(
 	(state: RachaAbelState) => state.jogador
 );
 
+export const isJogadoresLoaded = createSelector(
+	getJogadorState,
+	(state: JogadorState) => state.loaded
+);
+
 export const getJogadores = createSelector(
 	getJogadorState,
 	adapter.getSelectors().selectAll

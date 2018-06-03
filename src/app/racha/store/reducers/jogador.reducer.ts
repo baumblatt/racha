@@ -8,18 +8,16 @@ export const adapter: EntityAdapter<Jogador> = createEntityAdapter<Jogador>({
 });
 
 export interface JogadorState extends EntityState<Jogador> {
+	loaded: boolean;
 }
 
-export const initialState: JogadorState = {
-	ids: [],
-	entities: {}
-};
+export const initialState: JogadorState = adapter.getInitialState({ loaded: false });
 
 export function jogadorReducer(state = initialState, action: JogadorAction): JogadorState {
 
 	switch (action.type) {
 		case LOAD_JOGADORES_SUCCESS: {
-			return adapter.addAll(action.payload, state);
+			return adapter.addAll(action.payload, { ...state, loaded: true });
 		}
 
 		default: {

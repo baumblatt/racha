@@ -7,6 +7,11 @@ export const getRachaState = createSelector(
 	(state: RachaAbelState) => state.racha
 );
 
+export const isRachaLoaded = createSelector(
+	getRachaState,
+	(state: RachaState) => state.loaded
+);
+
 export const getRachas = createSelector(
 	getRachaState,
 	adapter.getSelectors().selectAll

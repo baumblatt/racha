@@ -10,15 +10,16 @@ export const adapter: EntityAdapter<Racha> = createEntityAdapter<Racha>({
 
 export interface RachaState extends EntityState<Racha> {
 	selectedRacha?: string;
+	loaded: boolean;
 }
 
-export const initialState: RachaState = adapter.getInitialState({});
+export const initialState: RachaState = adapter.getInitialState({ loaded: false });
 
 export function rachaReducer(state = initialState, action: RachaAction): RachaState {
 
 	switch (action.type) {
 		case OBSERVE_RACHAS_NEXT: {
-			return adapter.addAll(action.payload, state);
+			return adapter.addAll(action.payload, { ...state, loaded: true });
 		}
 
 		case SELECT_RACHA: {
