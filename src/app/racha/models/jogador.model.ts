@@ -4,4 +4,5 @@ export interface Jogador {
 	photoURL: string;
 	email: string;
 	role: string;
+	admin: boolean;
 }

@@ -11,5 +11,5 @@ export const createJogador = functions.auth.user().onCreate(function(event) {
 	const { uid, displayName, photoURL, email } = event;
 
 	// Get the uid and display name of the newly created user
-	return admin.firestore().doc(`/jogadores/${uid}`).set({ uid, displayName, photoURL, email, role: 'guest' });
+	return admin.firestore().doc(`/jogadores/${uid}`).set({ uid, displayName, photoURL, email, role: 'Visitante', admin: false });
 });
