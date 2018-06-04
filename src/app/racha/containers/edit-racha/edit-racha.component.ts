@@ -8,10 +8,10 @@ import { getRacha } from '../../store/selectors/racha.selectors';
 
 @Component({
 	selector: 'app-racha-admin',
-	templateUrl: './racha-admin.component.html',
-	styleUrls: ['./racha-admin.component.scss']
+	templateUrl: './edit-racha.component.html',
+	styleUrls: ['./edit-racha.component.scss']
 })
-export class RachaAdminComponent implements OnInit {
+export class EditRachaComponent implements OnInit {
 
 	/**
 	 * Referência para o racha selecionado.

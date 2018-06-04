@@ -53,7 +53,7 @@ export class RachaEffects {
 	adminRacha$ = this.actions$.pipe(
 		ofType(ADMIN_RACHA),
 		pluck<AdminRacha, Racha>('payload'),
-		map((racha) => new Go({ path: ['core', 'racha', 'racha-admin', racha.nome] }))
+		map((racha) => new Go({ path: ['core', 'racha', 'edit-racha', racha.nome] }))
 	);
 
 }

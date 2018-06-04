@@ -1,3 +1,4 @@
+import { Atuacao } from './atuacao.model';
 import { Jogador } from './jogador.model';
 
 export interface Racha {
@@ -6,6 +7,6 @@ export interface Racha {
 	mensagem: string;
 	mensalistas: Jogador[];
 	convidados: Jogador[];
-	presentes: Jogador[];
+	presentes: Atuacao[];
 	status: string;
 }
