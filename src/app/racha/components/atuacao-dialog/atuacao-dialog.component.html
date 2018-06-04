@@ -2,7 +2,7 @@
 <mat-dialog-content>
 	<form [formGroup]="form">
 		<mat-form-field>
-			<mat-select placeholder="Jogador" formControlName="jogador">
+			<mat-select placeholder="Jogador" [formControlName]="'jogador'">
 				<mat-option *ngFor="let jogador of jogadores" [value]="jogador">
 					{{ jogador.displayName }}
 				</mat-option>
@@ -11,6 +11,7 @@
 		<mat-form-field>
 			<input matInput type="number" placeholder="Gols" [min]="0" formControlName="gols">
 		</mat-form-field>
+		<mat-slider tickInterval="1" [max]="3" [formControlName]="'vitorias'"></mat-slider>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions>
