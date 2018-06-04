@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Racha } from '../../models/rachas.model';
-import { AdminRacha, DeselectRacha } from '../../store/actions/racha.action';
+import { DeselectRacha, EditRacha } from '../../store/actions/racha.action';
 import { RachaState } from '../../store/reducers/racha.reducer';
 import { getRacha } from '../../store/selectors/racha.selectors';
 
@@ -39,7 +39,7 @@ export class RachaComponent implements OnInit {
 	 * Emit the Admin Racha action.
 	 */
 	admin(racha: Racha) {
-		this.store.dispatch(new AdminRacha(racha));
+		this.store.dispatch(new EditRacha(racha));
 	}
 
 }

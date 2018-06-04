@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
+import { AtuacaoDialogComponent } from './components/atuacao-dialog/atuacao-dialog.component';
 import { ListaJogadoresComponent } from './components/lista-jogadores/lista-jogadores.component';
 import { ListaRachasItemComponent } from './components/lista-rachas-item/lista-rachas-item.component';
 import { ListaRachasComponent } from './components/lista-rachas/lista-rachas.component';
@@ -28,9 +29,10 @@ import { reducers } from './store/reducers/global.reducers';
 		ListaJogadoresComponent,
 		RachaComponent,
 		ListaRachasItemComponent,
-		EditRachaComponent
+		EditRachaComponent,
+		AtuacaoDialogComponent
 	],
-	entryComponents: [RachaComponent]
+	entryComponents: [AtuacaoDialogComponent]
 })
 export class RachaModule {
 }

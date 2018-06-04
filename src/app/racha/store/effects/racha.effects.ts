@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { of } from 'rxjs';
-import { catchError, map, pluck, switchMapTo, takeUntil } from 'rxjs/operators';
+import { catchError, exhaustMap, map, pluck, switchMapTo, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { Go } from '../../../core/store/actions/router.action';
+import { AtuacaoDialogComponent } from '../../components/atuacao-dialog/atuacao-dialog.component';
+import { Jogador } from '../../models/jogador.model';
 import { Racha } from '../../models/rachas.model';
 import {
-	ADMIN_RACHA,
-	AdminRacha,
+	ADD_ATUACAO_RACHA,
 	DESELECT_RACHA,
+	EDIT_RACHA,
+	EditRacha,
 	OBSERVE_RACHAS_SUBSCRIBE,
 	OBSERVE_RACHAS_UNSUBSCRIBE,
 	ObserveRachasError,
@@ -17,11 +21,12 @@ import {
 	SELECT_RACHA
 } from '../actions/racha.action';
 import { RachaState } from '../reducers/racha.reducer';
+import { getJogadores } from '../selectors/jogador.selectors';
 
 @Injectable()
 export class RachaEffects {
 
-	constructor(private actions$: Actions, private db: AngularFirestore, private store: Store<RachaState>) {
+	constructor(private actions$: Actions, private db: AngularFirestore, public dialog: MatDialog, private store: Store<RachaState>) {
 	}
 
 	@Effect()
@@ -50,10 +55,22 @@ export class RachaEffects {
 	);
 
 	@Effect()
-	adminRacha$ = this.actions$.pipe(
-		ofType(ADMIN_RACHA),
-		pluck<AdminRacha, Racha>('payload'),
+	editRacha$ = this.actions$.pipe(
+		ofType(EDIT_RACHA),
+		pluck<EditRacha, Racha>('payload'),
 		map((racha) => new Go({ path: ['core', 'racha', 'edit-racha', racha.nome] }))
+	);
+
+	@Effect({ dispatch: false })
+	addAtuacaoRacha$ = this.actions$.pipe(
+		ofType(ADD_ATUACAO_RACHA),
+		pluck('payload'),
+		withLatestFrom(this.store.pipe(select(getJogadores))),
+		exhaustMap(([racha, jogadores]: [Racha, Jogador[]]) => this.dialog.open(AtuacaoDialogComponent, {
+			width: '90vw',
+			data: { racha: racha, jogadores: jogadores }
+		}).afterClosed()),
+		tap(teste => console.log(teste))
 	);
 
 }
