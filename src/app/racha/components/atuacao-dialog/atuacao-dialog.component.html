@@ -10,8 +10,58 @@
 		</mat-form-field>
 		<mat-form-field>
 			<input matInput type="number" placeholder="Gols" [min]="0" formControlName="gols">
+			<button mat-button matSuffix mat-icon-button (click)="remove('gols')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('gols')">
+				<mat-icon>add</mat-icon>
+			</button>
 		</mat-form-field>
-		<mat-slider tickInterval="1" [max]="3" [formControlName]="'vitorias'"></mat-slider>
+		<mat-form-field>
+			<input matInput type="number" placeholder="Vitorias" [min]="0" formControlName="vitorias">
+			<button mat-button matSuffix mat-icon-button (click)="remove('vitorias')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('vitorias')">
+				<mat-icon>add</mat-icon>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" placeholder="Empates" [min]="0" formControlName="empates">
+			<button mat-button matSuffix mat-icon-button (click)="remove('empates')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('empates')">
+				<mat-icon>add</mat-icon>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" placeholder="Derrotas" [min]="0" formControlName="derrotas">
+			<button mat-button matSuffix mat-icon-button (click)="remove('derrotas')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('derrotas')">
+				<mat-icon>add</mat-icon>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" placeholder="Amarelos" [min]="0" formControlName="amarelos">
+			<button mat-button matSuffix mat-icon-button (click)="remove('amarelos')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('amarelos')">
+				<mat-icon>add</mat-icon>
+			</button>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="number" placeholder="Vermelhos" [min]="0" formControlName="vermelhos">
+			<button mat-button matSuffix mat-icon-button (click)="remove('vermelhos')">
+				<mat-icon>remove</mat-icon>
+			</button>
+			<button mat-button matSuffix mat-icon-button (click)="add('vermelhos')">
+				<mat-icon>add</mat-icon>
+			</button>
+		</mat-form-field>
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions>

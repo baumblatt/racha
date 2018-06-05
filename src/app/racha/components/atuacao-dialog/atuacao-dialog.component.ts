@@ -37,12 +37,22 @@ export class AtuacaoDialogComponent {
 		this.form = this.fb.group({
 			jogador: [''],
 			gols: [0],
-			amarelos: [0],
-			vermelhos: [0],
 			vitorias: [0],
 			derrotas: [0],
-			empates: [0]
+			empates: [0],
+			amarelos: [0],
+			vermelhos: [0],
 		});
+	}
+
+	add(field: string) {
+		this.form.get(field).patchValue(this.form.get(field).value + 1);
+	}
+
+	remove(field: string) {
+		if (this.form.get(field).value > 0) {
+			this.form.get(field).patchValue(this.form.get(field).value - 1);
+		}
 	}
 
 	close() {
