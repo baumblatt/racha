@@ -8,7 +8,7 @@
 		</mat-card-header>
 		<mat-card-content>
 			<mat-list>
-				<mat-list-item *ngFor="let atuacao of racha.presentes">
+				<mat-list-item *ngFor="let atuacao of _.values(racha.presentes)">
 					<img mat-list-avatar [src]="atuacao.jogador.photoURL">
 					<h4 mat-line>{{atuacao.jogador.displayName}}</h4>
 				</mat-list-item>

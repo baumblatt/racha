@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import * as _ from 'lodash';
 import { Racha } from '../../models/rachas.model';
 import { RachaAction, SelectRacha } from '../../store/actions/racha.action';
 
@@ -8,6 +9,11 @@ import { RachaAction, SelectRacha } from '../../store/actions/racha.action';
 	styleUrls: ['./lista-rachas-item.component.scss']
 })
 export class ListaRachasItemComponent {
+
+	/**
+	 * Lodash reference.
+	 */
+	_: any = _;
 
 	/**
 	 * The Racha to be listed.

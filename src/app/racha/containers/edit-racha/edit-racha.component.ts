@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { Jogador } from '../../models/jogador.model';
 import { Racha } from '../../models/rachas.model';
@@ -14,6 +15,11 @@ import { getRacha } from '../../store/selectors/racha.selectors';
 	styleUrls: ['./edit-racha.component.scss']
 })
 export class EditRachaComponent implements OnInit {
+
+	/**
+	 * Lodash reference.
+	 */
+	_: any = _;
 
 	/**
 	 * Referência para o racha selecionado.
