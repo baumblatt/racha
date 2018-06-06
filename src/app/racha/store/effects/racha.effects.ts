@@ -3,10 +3,12 @@ import { MatDialog } from '@angular/material';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { of } from 'rxjs';
-import { catchError, exhaustMap, map, pluck, switchMapTo, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { catchError, exhaustMap, filter, map, pluck, switchMap, switchMapTo, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Go } from '../../../core/store/actions/router.action';
+import { ShowSnackBar } from '../../../core/store/actions/snack-bar.action';
 import { AtuacaoDialogComponent } from '../../components/atuacao-dialog/atuacao-dialog.component';
+import { Atuacao } from '../../models/atuacao.model';
 import { Jogador } from '../../models/jogador.model';
 import { Racha } from '../../models/rachas.model';
 import {
@@ -18,10 +20,17 @@ import {
 	OBSERVE_RACHAS_UNSUBSCRIBE,
 	ObserveRachasError,
 	ObserveRachasNext,
-	SELECT_RACHA
+	SELECT_RACHA,
+	UPDATE_RACHA,
+	UPDATE_RACHA_FAIL,
+	UPDATE_RACHA_SUCCESS,
+	UpdateRacha,
+	UpdateRachaFail,
+	UpdateRachaSuccess
 } from '../actions/racha.action';
 import { RachaState } from '../reducers/racha.reducer';
 import { getJogadores } from '../selectors/jogador.selectors';
+import { getRacha } from '../selectors/racha.selectors';
 
 @Injectable()
 export class RachaEffects {
@@ -61,7 +70,7 @@ export class RachaEffects {
 		map((racha) => new Go({ path: ['core', 'racha', 'edit-racha', racha.nome] }))
 	);
 
-	@Effect({ dispatch: false })
+	@Effect()
 	addAtuacaoRacha$ = this.actions$.pipe(
 		ofType(ADD_ATUACAO_RACHA),
 		pluck('payload'),
@@ -69,8 +78,42 @@ export class RachaEffects {
 		exhaustMap(([racha, jogadores]: [Racha, Jogador[]]) => this.dialog.open(AtuacaoDialogComponent, {
 			width: '90vw',
 			data: { racha: racha, jogadores: jogadores }
-		}).afterClosed()),
-		tap(teste => console.log(teste))
+		}).afterClosed().pipe(
+			filter((atuacao) => !!atuacao)
+		)),
+		withLatestFrom(this.store.pipe(select(getRacha))),
+		map(([atuacao, racha]: [Atuacao, Racha]) => new UpdateRacha({
+			...racha,
+			presentes: { ...racha.presentes, [atuacao.jogador.uid]: atuacao }
+		}))
+	);
+
+	@Effect()
+	updateRacha$ = this.actions$.pipe(
+		ofType(UPDATE_RACHA),
+		pluck('payload'),
+		switchMap((racha: Racha) => from(this.db.collection<Racha>('rachas').doc(racha.nome).set({ ...racha })).pipe(
+			map(() => new UpdateRachaSuccess(racha)),
+			catchError((error) => of(new UpdateRachaFail(error)))
+		))
+	);
+
+	@Effect()
+	updateRachaSuccess$ = this.actions$.pipe(
+		ofType(UPDATE_RACHA_SUCCESS),
+		map(() => new ShowSnackBar({
+			message: 'Racha atualizado com sucesso.',
+			config: { duration: 6000, panelClass: ['mat-snack-bar-primary'] }
+		}))
+	);
+
+	@Effect()
+	updateRachaFail$ = this.actions$.pipe(
+		ofType(UPDATE_RACHA_FAIL),
+		map(() => new ShowSnackBar({
+			message: 'Ops, não foi possível atualizar o racha.',
+			config: { duration: 6000, panelClass: ['mat-snack-bar-warn'] }
+		}))
 	);
 
 }

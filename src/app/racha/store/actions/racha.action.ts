@@ -69,6 +69,31 @@ export class AddAtuacaoRacha implements Action {
 	}
 }
 
+export const UPDATE_RACHA = '[Racha] Atualizar Racha.';
+export const UPDATE_RACHA_SUCCESS = '[Racha] Atualizar Racha (Success).';
+export const UPDATE_RACHA_FAIL = '[Racha] Atualizar Racha (Fail).';
+
+export class UpdateRacha implements Action {
+	readonly type = UPDATE_RACHA;
+
+	constructor(public payload: Racha) {
+	}
+}
+
+export class UpdateRachaSuccess implements Action {
+	readonly type = UPDATE_RACHA_SUCCESS;
+
+	constructor(public payload: Racha) {
+	}
+}
+
+export class UpdateRachaFail implements Action {
+	readonly type = UPDATE_RACHA_FAIL;
+
+	constructor(public payload: any) {
+	}
+}
+
 export type RachaAction =
 	| ObserveRachasSubscribe
 	| ObserveRachasNext
@@ -77,4 +102,7 @@ export type RachaAction =
 	| SelectRacha
 	| EditRacha
 	| DeselectRacha
-	| AddAtuacaoRacha;
+	| AddAtuacaoRacha
+	| UpdateRacha
+	| UpdateRachaSuccess
+	| UpdateRachaFail;

@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as moment from 'moment';
 import { Racha } from '../../models/rachas.model';
-import { DESELECT_RACHA, OBSERVE_RACHAS_NEXT, RachaAction, SELECT_RACHA } from '../actions/racha.action';
+import { DESELECT_RACHA, OBSERVE_RACHAS_NEXT, RachaAction, SELECT_RACHA, UPDATE_RACHA_SUCCESS } from '../actions/racha.action';
 
 export const adapter: EntityAdapter<Racha> = createEntityAdapter<Racha>({
 	selectId: model => model.nome,
@@ -37,6 +37,11 @@ export function rachaReducer(state = initialState, action: RachaAction): RachaSt
 			return {
 				...rest
 			};
+		}
+
+		case UPDATE_RACHA_SUCCESS: {
+			const racha = action.payload;
+			return adapter.updateOne({ id: racha.nome, changes: racha }, state);
 		}
 
 		default: {
