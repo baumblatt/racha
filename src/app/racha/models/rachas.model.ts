@@ -7,6 +7,8 @@ export interface Racha {
 	mensagem: string;
 	mensalistas: Jogador[];
 	convidados: Jogador[];
-	presentes: Atuacao[];
+	presentes: {
+		[uid: string]: Atuacao
+	};
 	status: string;
 }

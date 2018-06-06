@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import * as _ from 'lodash';
 import { Atuacao } from '../../models/atuacao.model';
 import { Jogador } from '../../models/jogador.model';
 import { Racha } from '../../models/rachas.model';
@@ -31,8 +30,7 @@ export class AtuacaoDialogComponent {
 	constructor(public dialogRef: MatDialogRef<AtuacaoDialogComponent>, private fb: FormBuilder,
 							@Inject(MAT_DIALOG_DATA) public data: { racha: Racha, jogadores: Jogador[], atuacao?: Atuacao }) {
 
-		const presentes = _.keyBy(data.racha.presentes, atuacao => atuacao.jogador.uid);
-		this.jogadores = data.jogadores.filter(jogador => !presentes[jogador.uid]);
+		this.jogadores = data.jogadores.filter(jogador => !data.racha.presentes[jogador.uid]);
 
 		this.form = this.fb.group({
 			jogador: [''],
